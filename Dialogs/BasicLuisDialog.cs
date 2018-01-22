@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Bot.Builder.Dialogs;
@@ -19,7 +20,7 @@ namespace Microsoft.Bot.Sample.LuisBot
         [LuisIntent("None")]
         public async Task NoneIntent(IDialogContext context, LuisResult result)
         {
-          await context.SayAsync("Sunny day in rawicz: "+ context.Activity.ChannelId, "Sunny day in rawicz: " + context.Activity.ChannelId);
+          await context.SayAsync("I love you");
             context.Wait(MessageReceived);
         }
 
@@ -28,7 +29,7 @@ namespace Microsoft.Bot.Sample.LuisBot
         [LuisIntent("Book")]
         public async Task Book(IDialogContext context, LuisResult result)
         {
-            await context.SayAsync("OK! i will book hotel for you", "OK! i will book hotel for you");
+            await context.SayAsync("OK! i will book"+ result.Entities.First() +" for you", "OK! i will book "+ result.Entities.First() + " for you");
             context.Wait(MessageReceived);
         }
 
@@ -54,10 +55,16 @@ namespace Microsoft.Bot.Sample.LuisBot
         [LuisIntent("AIPO")]
         public async Task AIPO(IDialogContext context, LuisResult result)
         {
-            await context.SayAsync("Yes of Course!");
+            await context.SayAsync("Yes of Course!", "Yes of Course!");
             context.Wait(MessageReceived);
         }
 
+        [LuisIntent("Thanks")]
+        public async Task Thanks(IDialogContext context, LuisResult result)
+        {
+            await context.SayAsync("You are welcome!", "You are welcome!");
+            context.Wait(MessageReceived);
+        }
 
     }
 }
