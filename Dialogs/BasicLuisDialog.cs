@@ -50,5 +50,14 @@ namespace Microsoft.Bot.Sample.LuisBot
             await context.SayAsync("Weather. GetForecast", "Weather. GetForecast");
             context.Wait(MessageReceived);
         }
+
+        [LuisIntent("AIPO")]
+        public async Task AIPO(IDialogContext context, LuisResult result)
+        {
+            await context.SayAsync("Yes of Course!");
+            context.Wait(MessageReceived);
+        }
+
+
     }
 }
