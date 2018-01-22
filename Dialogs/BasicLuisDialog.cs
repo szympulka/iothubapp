@@ -29,7 +29,7 @@ namespace Microsoft.Bot.Sample.LuisBot
         [LuisIntent("Book")]
         public async Task Book(IDialogContext context, LuisResult result)
         {
-            await context.SayAsync("OK! i will book"+ result.Entities.First() +" for you", "OK! i will book "+ result.Entities.First() + " for you");
+            await context.SayAsync("OK! i will book"+ result.Entities.First().Entity +" for you", "OK! i will book "+ result.Entities.First().Entity + " for you");
             context.Wait(MessageReceived);
         }
 
